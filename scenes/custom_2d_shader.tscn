@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://mxnambxiys5x"]
+
+[ext_resource type="Shader" path="res://scripts/2d_shadows.gdshader" id="1_64gc3"]
+
+[sub_resource type="Gradient" id="Gradient_b2lic"]
+offsets = PackedFloat32Array(0, 0.467213)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cky5f"]
+gradient = SubResource("Gradient_b2lic")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_24cm0"]
+shader = ExtResource("1_64gc3")
+shader_parameter/color = Color(0, 0, 0, 0.313726)
+shader_parameter/angle = 20.0
+shader_parameter/max_dist = 15.0
+shader_parameter/gradientTexture = SubResource("GradientTexture1D_cky5f")
+
+[node name="2DShadow" type="Polygon2D"]
+material = SubResource("ShaderMaterial_24cm0")
+polygon = PackedVector2Array(-200, -200, -200, 200, 200, 200, 200, -200)

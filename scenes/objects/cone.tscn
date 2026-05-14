@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdcyugs6wsry6"]
+
+[ext_resource type="Script" path="res://scripts/stacked_sprite.gd" id="1_17n07"]
+[ext_resource type="Script" path="res://scripts/objects.gd" id="1_lhcig"]
+[ext_resource type="Texture2D" uid="uid://dvpjub6e0787s" path="res://assets/environment/cone.png" id="2_dvhtj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ql3yk"]
+size = Vector2(3, 3)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_261ji"]
+polygon = PackedVector2Array(-1, -1, -1, 1, 1, 1, 1, -1)
+
+[node name="Cone" type="RigidBody2D" groups=["YSorted"]]
+mass = 0.5
+gravity_scale = 0.0
+linear_damp = 5.0
+script = ExtResource("1_lhcig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ql3yk")
+
+[node name="StackedSprite" type="Node2D" parent="."]
+script = ExtResource("1_17n07")
+texture = ExtResource("2_dvhtj")
+slices_width = 3
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_261ji")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-5, -5, 10, 10)

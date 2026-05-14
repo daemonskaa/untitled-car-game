@@ -1,0 +1,44 @@
+[gd_scene load_steps=10 format=3 uid="uid://cw0cst16t57pp"]
+
+[ext_resource type="Script" path="res://scripts/building.gd" id="1_p0jt6"]
+[ext_resource type="Texture2D" uid="uid://boms8bnu2yy7e" path="res://assets/environment/buildings/building-1.png" id="2_ivw8y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfyqu"]
+atlas = ExtResource("2_ivw8y")
+region = Rect2(0, 112, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5w75y"]
+atlas = ExtResource("2_ivw8y")
+region = Rect2(128, 112, 128, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mem17"]
+atlas = ExtResource("2_ivw8y")
+region = Rect2(0, 0, 128, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahcmp"]
+atlas = ExtResource("2_ivw8y")
+region = Rect2(128, 0, 128, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6xjh"]
+atlas = ExtResource("2_ivw8y")
+region = Rect2(256, 0, 64, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_734ls"]
+size = Vector2(128, 64)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_q4bur"]
+polygon = PackedVector2Array(-64, -32, -64, 32, 64, 32, 64, -32)
+
+[node name="Building-1" type="StaticBody2D" groups=["YSorted"]]
+script = ExtResource("1_p0jt6")
+EAST = SubResource("AtlasTexture_tfyqu")
+WEST = SubResource("AtlasTexture_5w75y")
+NORTH = SubResource("AtlasTexture_mem17")
+SOUTH = SubResource("AtlasTexture_ahcmp")
+TOP = SubResource("AtlasTexture_u6xjh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_734ls")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_q4bur")

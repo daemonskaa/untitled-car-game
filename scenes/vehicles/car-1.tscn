@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://bn3gsjxs2lf7q"]
+
+[ext_resource type="Script" path="res://scripts/car_controller.gd" id="1_fqd38"]
+[ext_resource type="Script" path="res://scripts/stacked_sprite.gd" id="2_rwcfh"]
+[ext_resource type="Texture2D" uid="uid://du6kjitru7x55" path="res://assets/vehicles/car-1.png" id="3_3lbqf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44wdc"]
+size = Vector2(14, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jsgsa"]
+polygon = PackedVector2Array(-7, -4, -7, 4, 7, 4, 7, -4)
+
+[node name="Car-1" type="RigidBody2D" groups=["YSorted"]]
+script = ExtResource("1_fqd38")
+WHEEL_BASE = 8.0
+STEERING_ANGLE = 8.0
+ENGINE_POWER = 175.0
+BRAKING = -40.0
+MAX_REVERSE_SPEED = 60.0
+TRACTION_SLOW = 0.6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 2
+shape = SubResource("RectangleShape2D_44wdc")
+
+[node name="StackedSprite" type="Node2D" parent="."]
+script = ExtResource("2_rwcfh")
+texture = ExtResource("3_3lbqf")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_jsgsa")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-10, -8, 20, 16)

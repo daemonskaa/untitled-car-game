@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://dp5nvdhvwxti6"]
+
+[ext_resource type="Script" path="res://scripts/top_control.gd" id="1_ryyko"]
+[ext_resource type="PackedScene" uid="uid://d2p27a31d4vy8" path="res://scenes/y_sorter.tscn" id="2_0yi61"]
+[ext_resource type="TileSet" uid="uid://bmr8hghebpsox" path="res://scenes/tilesets/ground.tres" id="2_r8ocm"]
+[ext_resource type="TileSet" uid="uid://vcqg14iyggsd" path="res://scenes/tilesets/road.tres" id="3_d231b"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="4_4iwfo"]
+[ext_resource type="PackedScene" uid="uid://mxnambxiys5x" path="res://scenes/custom_2d_shader.tscn" id="5_qqlwp"]
+[ext_resource type="PackedScene" uid="uid://cuforxrbxeyt7" path="res://scenes/vehicles/car-2.tscn" id="6_x3tkb"]
+[ext_resource type="PackedScene" uid="uid://cexeuh1u7a6tu" path="res://scenes/player.tscn" id="7_jiqq3"]
+[ext_resource type="PackedScene" uid="uid://ch503tp86m3m7" path="res://scenes/UI/interaction.tscn" id="9_fc32c"]
+[ext_resource type="PackedScene" uid="uid://jtspifyc0tkr" path="res://scenes/UI/ui.tscn" id="11_1qweg"]
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_ryyko")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+ignore_rotation = false
+zoom = Vector2(0.2, 0.2)
+script = ExtResource("4_4iwfo")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Camera2D"]
+remote_path = NodePath("../../2DShadow")
+update_scale = false
+
+[node name="YSorter" parent="." instance=ExtResource("2_0yi61")]
+
+[node name="Ground Tiles" type="Node2D" parent="."]
+
+[node name="Pavement" type="TileMapLayer" parent="Ground Tiles"]
+top_level = true
+z_index = -1
+tile_set = ExtResource("2_r8ocm")
+
+[node name="Sidewalk" type="TileMapLayer" parent="Ground Tiles"]
+top_level = true
+z_index = -1
+tile_set = ExtResource("2_r8ocm")
+
+[node name="Road" type="TileMapLayer" parent="Ground Tiles"]
+top_level = true
+z_index = -1
+tile_set = ExtResource("3_d231b")
+
+[node name="Environments" type="Node2D" parent="."]
+
+[node name="Buildings" type="Node2D" parent="."]
+
+[node name="Vehicles" type="Node2D" parent="."]
+
+[node name="Car-2" parent="Vehicles" instance=ExtResource("6_x3tkb")]
+position = Vector2(152, 88)
+
+[node name="Car-3" parent="Vehicles" instance=ExtResource("6_x3tkb")]
+position = Vector2(128, 88)
+
+[node name="Car-4" parent="Vehicles" instance=ExtResource("6_x3tkb")]
+position = Vector2(152, 72)
+
+[node name="Car-5" parent="Vehicles" instance=ExtResource("6_x3tkb")]
+position = Vector2(128, 72)
+
+[node name="Car-6" parent="Vehicles" instance=ExtResource("6_x3tkb")]
+position = Vector2(168, 80)
+
+[node name="Car-7" parent="Vehicles" instance=ExtResource("6_x3tkb")]
+position = Vector2(112, 80)
+
+[node name="2DShadow" parent="." instance=ExtResource("5_qqlwp")]
+top_level = true
+z_index = -1
+
+[node name="Player" parent="." groups=["InControl"] instance=ExtResource("7_jiqq3")]
+position = Vector2(136, 72)
+
+[node name="UI Layer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Interaction" parent="UI Layer" instance=ExtResource("9_fc32c")]
+
+[node name="UI" parent="UI Layer" instance=ExtResource("11_1qweg")]

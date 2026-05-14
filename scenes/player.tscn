@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://cexeuh1u7a6tu"]
+
+[ext_resource type="Script" path="res://scripts/stacked_sprite.gd" id="1_jtcy5"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_nexcd"]
+[ext_resource type="Texture2D" uid="uid://mb5fdqm6cj6t" path="res://assets/vehicles/player.png" id="2_m5pmh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x25u0"]
+size = Vector2(2, 2)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o02hp"]
+radius = 6.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qwxo4"]
+polygon = PackedVector2Array(0, -1, -0.75, -0.75, -1, 0, -0.75, 0.75, 0, 1, 0.75, 0.75, 1, 0, 0.75, -0.75)
+
+[node name="Player" type="CharacterBody2D" groups=["YSorted"]]
+motion_mode = 1
+script = ExtResource("1_nexcd")
+
+[node name="StackedSprite" type="Node2D" parent="."]
+script = ExtResource("1_jtcy5")
+texture = ExtResource("2_m5pmh")
+slices_width = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 2
+shape = SubResource("RectangleShape2D_x25u0")
+
+[node name="Interaction" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+shape = SubResource("CircleShape2D_o02hp")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_qwxo4")
+
+[connection signal="body_entered" from="Interaction" to="." method="_on_interaction_body_entered"]
+[connection signal="body_exited" from="Interaction" to="." method="_on_interaction_body_exited"]
