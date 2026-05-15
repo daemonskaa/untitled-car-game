@@ -8,9 +8,7 @@ This is my personal project that I made as some sort of demo for the implementat
 - Aseprite (2D sprites)
 
 ### Showcase
-<p align="center" width="100%">
-<video src="README%20media/truck-kun.mp4" width="640" height="360" controls></video>
-</p>
+https://github.com/user-attachments/assets/79a1fda3-6e5f-4320-ad42-a35d63f33404
 
 ### References
 - [Sprite Stacking in Godot 4.5](https://www.youtube.com/watch?v=sm-zTXCCc5M&t=3s&pp=ygUVc3ByaXRlIHN0YWNraW5nIGdvZG90)
