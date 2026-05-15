@@ -9,7 +9,7 @@ This is my personal project that I made as some sort of demo for the implementat
 
 ### Showcase
 <p align="center" width="100%">
-<video src="README media/truck-kun.mp4" width="640" height="360" controls><video>
+<video src="README%20media/truck-kun.mp4" width="640" height="360" controls></video>
 </p>
 
 ### References
